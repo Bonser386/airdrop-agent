@@ -1,0 +1,11 @@
+id: elysium-claim
+name: Elysium Genesis claim
+url: https://elygenesis.xyz/claim/
+platform: custom
+steps:
+- goto: '{{url}}'
+- dismiss: true
+- wallet:
+    connect: true
+- manual: check the real whitelist status (the machine preview is not the status) and claim only if eligible — the status page is behind a Cloudflare Turnstile, so a human may need to pass it
+- screenshot: elysium

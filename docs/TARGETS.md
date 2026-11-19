@@ -8,6 +8,9 @@ All nineteen responded `200` with no interstitial in the HTML. No site produced 
 Cloudflare challenge in this run. Kiedex carries a hidden Turnstile field on login; Tzero's bundle
 is heavy and its first DOM load can exceed 90 s.
 
+Five more targets were added in the Bonser386 fork (probed 2026-11-19, all `200` by curl;
+browser behaviour not yet exercised — re-probe before trusting them):
+
 | target | HTTP | CF | wallet | form surface | quest | stop |
 |---|---|---|---|---|---|---|
 | app.dowprotocol.com/points | 200 | none | injected | none, quiz buttons | `dow-points` | quiz answer |
@@ -29,6 +32,11 @@ is heavy and its first DOM load can exceed 90 s.
 | oripa.xyz | 200 | none | injected | email | `oripa-raffle` | submit entry |
 | codekitty.xyz | 200 | none | injected | terminal boot | `codekitty-whitelist` | intro + mint |
 | zkunnamed.xyz/apply | 200 | none | injected | wallet, X post, handles | `zkunnamed-apply` | fill + send |
+| unsolvable.art | 200 | none | injected | connect, window | `unsolvable-mint` | window / puzzle / sign |
+| foome.foundation/#checker | 200 | none | — | address input | `foome-checker` | allocation result |
+| elygenesis.xyz/claim | 200 | none | injected | connect, claim | `elysium-claim` | status / claim |
+| zeroguysnft.com/checker | 200 | none | injected | connect only | `zeroguys-checker` | whitelist result |
+| pengu.website | 200 | none | injected | connect, mint | `pengu-mint` | mint confirm (paid) |
 
 ## What was actually exercised
 
@@ -61,3 +69,16 @@ Re-probe a target before trusting an old quest:
 ```bash
 aa quest probe https://app.example.com/tasks --identity main
 ```
+
+## Fork-added targets (Bonser386, 2026-11-19)
+
+- **Unsolvable**: mint windows are 6 × 15 min a day, 80 mints each; the mint needs an on-chain
+  Agent ID and the operator's own MetaMask signature. The quest parks before the signature.
+- **FOOME**: the checker is rate-limited ("High traffic") and often fails — retry off-peak.
+  Claiming is not open yet and needs no signature.
+- **Elysium**: the machine preview (Gen I #0188, Signal 81) is not the whitelist status; the
+  real status page sits behind a Cloudflare Turnstile, so a human may need to pass it.
+- **Zero Guys**: the checker takes a wallet connection only, no manual address field.
+  Mint opens 30 Nov 2026, supply 3,444.
+- **PENGU**: the free mint (222/222) is sold out. The paid mint is 0.002 BNB each, max 5 per
+  wallet — the quest parks at the mint confirmation and never spends without the operator.

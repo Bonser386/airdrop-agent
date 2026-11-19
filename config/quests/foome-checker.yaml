@@ -1,0 +1,13 @@
+id: foome-checker
+name: FOOME allocation checker
+url: https://www.foome.foundation/#checker
+platform: custom
+steps:
+- goto: '{{url}}'
+- dismiss: true
+- fill:
+    selector: input[type=text]
+    value: '{{wallet}}'
+- click: Check
+- manual: read the allocation result — the checker often answers "High traffic", in which case retry off-peak; claiming is not open yet and needs no signature
+- screenshot: foome

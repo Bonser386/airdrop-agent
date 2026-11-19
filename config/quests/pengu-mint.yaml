@@ -1,0 +1,13 @@
+id: pengu-mint
+name: PENGU AGENT mint (BNB Chain)
+url: https://pengu.website
+platform: custom
+chain: bsc
+cooldown_hours: 24
+steps:
+- goto: '{{url}}'
+- dismiss: true
+- wallet:
+    connect: true
+- manual: read the mint state — the free mint (222/222) is sold out; the paid mint is 0.002 BNB each, max 5 per wallet, 1 NFT + 1,000,000 $PEGENT per mint. Do not confirm a paid mint without the owner's explicit say-so
+- screenshot: pengu

@@ -1,0 +1,12 @@
+id: zeroguys-checker
+name: Zero Guys NFT whitelist check
+url: https://zeroguysnft.com/checker/
+platform: custom
+cooldown_hours: 24
+steps:
+- goto: '{{url}}'
+- dismiss: true
+- wallet:
+    connect: true
+- manual: read the whitelist result for the connected wallet — the checker takes a wallet connection only, no manual address field; mint opens 30 Nov 2026, supply 3,444
+- screenshot: zeroguys

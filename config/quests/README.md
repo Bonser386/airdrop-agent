@@ -24,6 +24,11 @@ identity. Most park at a `manual` step on purpose — that is the honest boundar
 | oripa-raffle | email entry | submit |
 | codekitty-whitelist | terminal boot | intro + mint |
 | zkunnamed-apply | apply form | fill + send |
+| unsolvable-mint | connect + free mint | window / puzzle / sign |
+| foome-checker | address check | allocation result |
+| elysium-claim | connect + claim | status / claim |
+| zeroguys-checker | connect + check | whitelist result |
+| pengu-mint | connect + mint | mint confirm (paid) |
 
 ```bash
 aa quest import config/quests/oripa-raffle.yaml

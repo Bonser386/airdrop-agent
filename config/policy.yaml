@@ -3,6 +3,10 @@
 #   safe      = approval code for every connect/sign/tx/deploy
 #   balanced  = testnet inside caps is automatic, mainnet + permits + unknown contracts gate
 #   turbo     = everything inside caps is automatic (hard blocks still apply)
+# Fork notes (Bonser386): added the bsc mainnet chain (tiny caps, still gated by
+# allow_mainnet: false) for the Unsolvable + PENGU quests, and the operator's
+# verified target domains to domain_allowlist so their wallet connects don't
+# gate on every run. Mainnet sends still need an approval code.
 
 allow_mainnet: false                # flip true to let mainnet tx run (tiny caps below)
 allow_deploy_mainnet: false
@@ -103,6 +107,16 @@ chains:
     max_tx_native: 0.02
     max_daily_native: 0.05
     max_gas_native: 0.001
+  bsc:
+    chain_id: 56
+    rpc: https://bsc-dataseed.binance.org
+    rpc_env: RPC_BSC
+    testnet: false
+    native: BNB
+    explorer: https://bscscan.com
+    max_tx_native: 0.001
+    max_daily_native: 0.004
+    max_gas_native: 0.0004
 
 # Addresses the agent may call without asking (verify from official docs!)
 contracts_allowlist:
@@ -111,8 +125,11 @@ contracts_allowlist:
   arbitrum-sepolia: []
   optimism-sepolia: []
   monad-testnet: []
+  solana-devnet: []
   base: []
   arbitrum: []
+  solana: []
+  bsc: []
 
 blocklist: []                      # known drainers / wrong addresses
 domain_allowlist:                  # SIWE + wallet connect allowed without a gate
@@ -127,6 +144,14 @@ domain_allowlist:                  # SIWE + wallet connect allowed without a gat
   - aerodrome.finance
   - jupiter.ag
   - rabby.io
+  # Operator's verified targets (forked quests connect wallets here)
+  - unsolvable.art
+  - foome.foundation
+  - elygenesis.xyz
+  - zeroguysnft.com
+  - pengu.website
+  - testnet.nilly.fun
+  - qyrolabs.space
 
 limits:
   gate_ttl_minutes: 720

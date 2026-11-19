@@ -1,0 +1,13 @@
+id: unsolvable-mint
+name: Unsolvable free mint (BSC)
+url: https://unsolvable.art/
+platform: custom
+chain: bsc
+cooldown_hours: 24
+steps:
+- goto: '{{url}}'
+- dismiss: true
+- wallet:
+    connect: true
+- manual: check whether a 15-minute mint window is open (6 windows a day, 80 mints each), then solve the puzzle and sign the mint in MetaMask — the mint needs an on-chain Agent ID, one mint per Agent ID ever, and the signature must be yours
+- screenshot: unsolvable
